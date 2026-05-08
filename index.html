@@ -1268,10 +1268,10 @@ function telechargerFichier(btn) {
   const url = btn.getAttribute('data-url');
   if (!url) { alert('Fichier non disponible.'); return; }
 
-  // Ajouter fl_attachment pour forcer le téléchargement
-  const downloadUrl = url.replace('/upload/', '/upload/fl_attachment/');
+  // Forcer le téléchargement avec fl_attachment et extension .pdf
+  let downloadUrl = url.replace('/upload/', '/upload/fl_attachment/');
+  if (!downloadUrl.endsWith('.pdf')) downloadUrl += '.pdf';
 
-  // Ouvrir dans un nouvel onglet — fonctionne sur mobile et desktop
   window.open(downloadUrl, '_blank');
 
   const texteOriginal = btn.textContent;
