@@ -1263,19 +1263,23 @@ function escapeAttr(str) {
   return String(str).replace(/[^a-zA-Z0-9._\-]/g, '');
 }
 
-// ── TÉLÉCHARGEMENT VIA CLOUDINARY ──
-function telechargerFichier(btn) {
+/function telechargerFichier(btn) {
   const url = btn.getAttribute('data-url');
   if (!url) { alert('Fichier non disponible.'); return; }
 
-  // Forcer le téléchargement avec fl_attachment et extension .pdf
-  let downloadUrl = url.replace('/upload/', '/upload/fl_attachment/');
-  if (!downloadUrl.endsWith('.pdf')) downloadUrl += '.pdf';
+  // Passer par le backend pour forcer le bon type MIME
+  const downloadUrl = 'https://edudocs-x8gc.onrender.com/download?url=' + encodeURIComponent(url);
 
-  window.open(downloadUrl, '_blank');
+  const a = document.createElement('a');
+  a.href = downloadUrl;
+  a.download = 'sujet-ena.pdf';
+  a.style.display = 'none';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
 
   const texteOriginal = btn.textContent;
-  btn.textContent = '✅ Ouverture…';
+  btn.textContent = '✅ Téléchargement…';
   btn.disabled = true;
   setTimeout(() => {
     btn.textContent = texteOriginal;
