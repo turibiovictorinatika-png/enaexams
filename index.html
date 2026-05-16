@@ -1263,7 +1263,7 @@ function escapeAttr(str) {
   return String(str).replace(/[^a-zA-Z0-9._\-]/g, '');
 }
 
-/function telechargerFichier(btn) {
+function telechargerFichier(btn) {
   const url = btn.getAttribute('data-url');
   if (!url) { alert('Fichier non disponible.'); return; }
 
