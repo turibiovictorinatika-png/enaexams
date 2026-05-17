@@ -1268,7 +1268,7 @@ function telechargerFichier(btn) {
   if (!url) { alert('Fichier non disponible.'); return; }
 
   // Passer par le backend pour forcer le bon type MIME
-  const downloadUrl = 'https://edudocs-x8gc.onrender.com/download?url=' + encodeURIComponent(url);
+  const downloadUrl = 'https://enaexams-backend.onrender.com/download?url=' + encodeURIComponent(url);
 
   const a = document.createElement('a');
   a.href = downloadUrl;
